@@ -6,7 +6,9 @@
             v-bind:key="message">
             {{ message }}
         </p>
-        <textarea v-model="newMessage" v-on:keyup.enter.exact="sendMessage" placeholder="Write a message"></textarea>
+        <div class="new-message">
+            <textarea v-model="newMessage" v-on:keyup.enter.exact="sendMessage" placeholder="Write a message"></textarea>
+        </div>
     </div>
 </template>
 
@@ -78,9 +80,20 @@ export default {
     background-color: aqua;
     border-radius: 1em;
 }
-textarea {
-    resize: none;
+.new-message {
     width: calc(100% - 3em);
     margin: 0 3em;
+    padding: 0.5em;
+    border-radius: 1em;
+    background-color: #eeeeee;
+}
+textarea {
+    width: 100%;
+    height: 4em;
+    resize: none;
+    font-family: inherit;
+    outline: none;
+    border: none;
+    background-color: inherit;
 }
 </style>
