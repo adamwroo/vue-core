@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using VueCoreTest.Hubs;
 using VueCoreTest.Middleware;
 
 namespace VueCoreTest
@@ -27,6 +28,7 @@ namespace VueCoreTest
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSignalR();
             // connect vue app - middleware  
             services.AddSpaStaticFiles(options => options.RootPath = "client-app/dist");
         }
@@ -48,6 +50,7 @@ namespace VueCoreTest
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chathub");
             });
 
             // use middleware and launch server for Vue  
