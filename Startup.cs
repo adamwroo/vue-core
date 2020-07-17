@@ -29,6 +29,7 @@ namespace VueCoreTest
         {
             services.AddControllers();
             services.AddSignalR();
+            services.AddCors();
             // connect vue app - middleware  
             services.AddSpaStaticFiles(options => options.RootPath = "client-app/dist");
         }
@@ -39,6 +40,11 @@ namespace VueCoreTest
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors(policy => policy
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .WithOrigins("http://localhost:8080")
+                    .AllowCredentials());
             }
 
             app.UseHttpsRedirection();
