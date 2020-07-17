@@ -26,7 +26,7 @@ export default {
     },
     methods: {
         sendMessage: function() {
-            if (this.newMessage == '') return;
+            if (!/\S+/.test(this.newMessage)) return;
 
             this.connection.invoke("SendMessage", this.newMessage).catch(err => console.error(err));
             this.newMessage = '';
